@@ -34,16 +34,28 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Resources/Colors.swift,
 			);
 			target = B91341E82E37EFA7000BA583 /* Stacks */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		B9551B232E37F52200AF5F0B /* Exceptions for "Stacks" folder in "Copy Bundle Resources" phase from "Stacks" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = B91341E72E37EFA7000BA583 /* Resources */;
+			membershipExceptions = (
+				Resources/Colors.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B91341EB2E37EFA7000BA583 /* Stacks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B91342112E37EFAA000BA583 /* Exceptions for "Stacks" folder in "Stacks" target */,
+				B9551B232E37F52200AF5F0B /* Exceptions for "Stacks" folder in "Copy Bundle Resources" phase from "Stacks" target */,
 			);
 			path = Stacks;
 			sourceTree = "<group>";
