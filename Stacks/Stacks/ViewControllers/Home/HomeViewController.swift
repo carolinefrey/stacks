@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hex: "#1f1f33")
     }
     
     convenience init() {
