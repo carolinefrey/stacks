@@ -38,6 +38,9 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         contentView.aggregateStatsView.configureAggregateStatsView(with: viewModel.fetchWeeklyStats())
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(.white)]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(.white)]
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: Functions
