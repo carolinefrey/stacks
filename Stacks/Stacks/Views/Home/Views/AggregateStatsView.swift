@@ -82,8 +82,7 @@ class AggregateStatsView: UIView {
     }
     
     private func styleViews() {
-        // Background with glassmorphism effect
-        backgroundColor = UIColor.white.withAlphaComponent(0.05)
+        backgroundColor = UIColor.white.withAlphaComponent(0.10)
         
         // Corner radius
         layer.cornerRadius = 10
@@ -92,23 +91,6 @@ class AggregateStatsView: UIView {
         // Border
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.withAlphaComponent(0.08).cgColor
-        
-        // Blur effect (iOS glassmorphism)
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.layer.cornerRadius = 10
-        blurView.layer.masksToBounds = true
-        
-        // Insert blur view behind content
-        insertSubview(blurView, at: 0)
-        
-        NSLayoutConstraint.activate([
-            blurView.topAnchor.constraint(equalTo: topAnchor),
-            blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
     }
 }
 

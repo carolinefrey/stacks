@@ -20,7 +20,6 @@ class HomeContentView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUpViews()
     }
     
@@ -34,7 +33,7 @@ class HomeContentView: UIView {
         addSubview(aggregateStatsView)
         
         NSLayoutConstraint.activate([
-            aggregateStatsView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            aggregateStatsView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             aggregateStatsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             aggregateStatsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             aggregateStatsView.heightAnchor.constraint(equalToConstant: 80),

@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
         view.backgroundColor = UIColor(hex: "#1f1f33")
     }
     
@@ -34,6 +33,7 @@ class HomeViewController: UIViewController {
         super.loadView()
         contentView = HomeContentView()
         view = contentView
+        title = "Stacks"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,6 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: Functions
-    
 }
 
 /* REFERENCE

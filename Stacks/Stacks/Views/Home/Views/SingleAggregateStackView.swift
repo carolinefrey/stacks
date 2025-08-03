@@ -15,7 +15,8 @@ class SingleAggregateStackView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 32, weight: .bold)
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
@@ -23,7 +24,8 @@ class SingleAggregateStackView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 24)
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .white
         return label
     }()
     
