@@ -29,6 +29,41 @@ class WorkoutSummaryCell: UICollectionViewCell {
         return title
     }()
     
+    let icon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        return imageView
+    }()
+    
+    let firstStat: SingleStatView = {
+        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+        stat.translatesAutoresizingMaskIntoConstraints = false
+        return stat
+    }()
+    
+    let secondStat: SingleStatView = {
+        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+        stat.translatesAutoresizingMaskIntoConstraints = false
+        return stat
+    }()
+    
+    let thirdStat: SingleStatView = {
+        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+        stat.translatesAutoresizingMaskIntoConstraints = false
+        return stat
+    }()
+    
+    let statsRow: UIStackView = {
+        let row = UIStackView()
+        row.translatesAutoresizingMaskIntoConstraints = false
+        row.axis = .horizontal
+        row.distribution = .fillEqually
+        row.alignment = .center
+        return row
+    }()
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -47,6 +82,16 @@ class WorkoutSummaryCell: UICollectionViewCell {
     func configure(with workout: Workout) {
         dayOfWeek.text = workout.date.dayOfWeek().uppercased()
         title.text = workout.title
+        icon.image = UIImage(systemName: workout.type.icon)
+        
+        firstStat.metric.text = String(workout.duration)
+        firstStat.statLabel.text = "time"
+            
+        secondStat.metric.text = String(workout.calories)
+        secondStat.statLabel.text = "calories"
+        
+        thirdStat.metric.text = String(workout.averageHR)
+        thirdStat.statLabel.text = "avg hr"
     }
     
     // MARK: - UI Setup
@@ -54,6 +99,13 @@ class WorkoutSummaryCell: UICollectionViewCell {
     private func setUpViews() {
         addSubview(dayOfWeek)
         addSubview(title)
+        addSubview(icon)
+        
+        statsRow.addArrangedSubview(firstStat)
+        statsRow.addArrangedSubview(secondStat)
+        statsRow.addArrangedSubview(thirdStat)
+        
+        addSubview(statsRow)
         
         NSLayoutConstraint.activate([
             dayOfWeek.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -63,6 +115,15 @@ class WorkoutSummaryCell: UICollectionViewCell {
             title.topAnchor.constraint(equalTo: dayOfWeek.bottomAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            icon.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            icon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            icon.heightAnchor.constraint(equalToConstant: 30),
+            icon.widthAnchor.constraint(equalToConstant: 30),
+            
+            statsRow.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            statsRow.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            statsRow.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
         ])
     }
     

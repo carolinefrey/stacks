@@ -15,7 +15,6 @@ class SingleStatView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 28, weight: .bold)
         label.textColor = .white
         return label
     }()
@@ -24,7 +23,6 @@ class SingleStatView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18)
         label.textColor = .white
         return label
     }()
@@ -47,6 +45,12 @@ class SingleStatView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(metricFontSize: CGFloat, labelFontSize: CGFloat) {
+        self.init(frame: .zero)
+        metric.font = .systemFont(ofSize: metricFontSize, weight: .bold)
+        statLabel.font = .systemFont(ofSize: labelFontSize)
     }
     
     // MARK: - UI Setup

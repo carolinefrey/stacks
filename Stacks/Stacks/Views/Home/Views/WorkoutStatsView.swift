@@ -12,19 +12,19 @@ class WeeklyStatsView: UIView {
     // MARK: Properties
     
     let workoutsLabel: SingleStatView = {
-        let workouts = SingleStatView()
+        let workouts = SingleStatView(metricFontSize: 28, labelFontSize: 18)
         workouts.translatesAutoresizingMaskIntoConstraints = false
         return workouts
     }()
     
     let durationLabel: SingleStatView = {
-        let duration = SingleStatView()
+        let duration = SingleStatView(metricFontSize: 28, labelFontSize: 18)
         duration.translatesAutoresizingMaskIntoConstraints = false
         return duration
     }()
     
     let caloriesLabel: SingleStatView = {
-        let calories = SingleStatView()
+        let calories = SingleStatView(metricFontSize: 28, labelFontSize: 18)
         calories.translatesAutoresizingMaskIntoConstraints = false
         return calories
     }()

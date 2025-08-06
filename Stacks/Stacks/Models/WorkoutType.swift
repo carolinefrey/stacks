@@ -34,3 +34,20 @@ extension WorkoutType {
         }
     }
 }
+
+extension WorkoutType {
+    var icon: String {
+        switch self {
+        case .strength: return "figure.strengthtraining.traditional"
+        case .crossFit: return "figure.cross.training"
+        case .run: return "figure.run"
+        case .walk: return "figure.walk"
+        case .weightVestWalk: return "figure.walk"
+        case .bike: return "figure.outdoor.cycle"
+        case .mountainBike: return "figure.outdoor.cycle"
+        case .swim: return "figure.pool.swim"
+        case .pickleBall: return "figure.pickleball"
+        case .tennis: return "figure.tennis"
+        }
+    }
+}

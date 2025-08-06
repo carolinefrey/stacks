@@ -52,7 +52,7 @@ class HomeContentView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = CGSize(width: collectionView.bounds.width, height: 100)
+            layout.itemSize = CGSize(width: collectionView.bounds.width, height: 115)
         }
     }
     
