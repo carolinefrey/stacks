@@ -11,20 +11,20 @@ class WeeklyStatsView: UIView {
     
     // MARK: Properties
     
-    let workoutsLabel: SingleAggregateStackView = {
-        let workouts = SingleAggregateStackView()
+    let workoutsLabel: SingleStatView = {
+        let workouts = SingleStatView()
         workouts.translatesAutoresizingMaskIntoConstraints = false
         return workouts
     }()
     
-    let durationLabel: SingleAggregateStackView = {
-        let duration = SingleAggregateStackView()
+    let durationLabel: SingleStatView = {
+        let duration = SingleStatView()
         duration.translatesAutoresizingMaskIntoConstraints = false
         return duration
     }()
     
-    let caloriesLabel: SingleAggregateStackView = {
-        let calories = SingleAggregateStackView()
+    let caloriesLabel: SingleStatView = {
+        let calories = SingleStatView()
         calories.translatesAutoresizingMaskIntoConstraints = false
         return calories
     }()
