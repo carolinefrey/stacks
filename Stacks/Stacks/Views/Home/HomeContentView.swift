@@ -16,8 +16,8 @@ class HomeContentView: UIView {
         return headerView
     }()
     
-    let aggregateStatsView: AggregateStatsView = {
-        let view = AggregateStatsView()
+    let weeklyStatsView: WeeklyStatsView = {
+        let view = WeeklyStatsView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -58,7 +58,7 @@ class HomeContentView: UIView {
     
     private func setUpViews() {
         addSubview(headerView)
-        addSubview(aggregateStatsView)
+        addSubview(weeklyStatsView)
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -67,12 +67,12 @@ class HomeContentView: UIView {
             headerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             headerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
-            aggregateStatsView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
-            aggregateStatsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            aggregateStatsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            aggregateStatsView.heightAnchor.constraint(equalToConstant: 80),
+            weeklyStatsView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
+            weeklyStatsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            weeklyStatsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            weeklyStatsView.heightAnchor.constraint(equalToConstant: 80),
             
-            collectionView.topAnchor.constraint(equalTo: aggregateStatsView.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: weeklyStatsView.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 20)

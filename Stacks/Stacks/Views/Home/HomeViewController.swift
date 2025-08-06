@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        contentView.aggregateStatsView.configureAggregateStatsView(with: viewModel.fetchWeeklyStats())
+        contentView.weeklyStatsView.configureWeeklyStatsView(with: viewModel.fetchWeeklyStats())
     }
     
     // MARK: Functions

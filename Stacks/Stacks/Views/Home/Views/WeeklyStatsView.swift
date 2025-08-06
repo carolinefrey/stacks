@@ -1,5 +1,5 @@
 //
-//  AggregateStatsView.swift
+//  WeeklyStatsView.swift
 //  Stacks
 //
 //  Created by Caroline Frey on 7/28/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AggregateStatsView: UIView {
+class WeeklyStatsView: UIView {
     
     // MARK: Properties
     
@@ -53,7 +53,7 @@ class AggregateStatsView: UIView {
     
     // MARK: - Functions
     
-    func configureAggregateStatsView(with stats: WeeklyStats) {
+    func configureWeeklyStatsView(with stats: WeeklyStats) {
         workoutsLabel.metric.text = String(stats.workouts)
         workoutsLabel.statLabel.text = "workouts"
         
