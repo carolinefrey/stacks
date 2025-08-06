@@ -10,10 +10,30 @@ import UIKit
 class HomeContentView: UIView {
     // use AggregateStatsView, WeekSelectorView, etc. to build out the home dashboard here
     
+    private let headerView: HeaderView = {
+        let headerView = HeaderView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     let aggregateStatsView: AggregateStatsView = {
         let view = AggregateStatsView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        layout.estimatedItemSize = .zero
+
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(WorkoutSummaryCell.self, forCellWithReuseIdentifier: WorkoutSummaryCell.workoutSummaryCollectionViewCellIdentifier)
+        collection.backgroundColor = UIColor(hex: "#1f1f33")
+        return collection
     }()
     
     // MARK: - Initializers
@@ -29,14 +49,33 @@ class HomeContentView: UIView {
     
     // MARK: - Functions
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: collectionView.bounds.width, height: 100)
+        }
+    }
+    
     private func setUpViews() {
+        addSubview(headerView)
         addSubview(aggregateStatsView)
+        addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            aggregateStatsView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerView.heightAnchor.constraint(equalToConstant: 50),
+            headerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            headerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            aggregateStatsView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
             aggregateStatsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             aggregateStatsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             aggregateStatsView.heightAnchor.constraint(equalToConstant: 80),
+            
+            collectionView.topAnchor.constraint(equalTo: aggregateStatsView.bottomAnchor, constant: 20),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 20)
         ])
     }
 }
