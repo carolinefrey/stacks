@@ -22,4 +22,11 @@ extension Date {
         formatter.dateFormat = "EEEE" // Full day name (e.g., Monday)
         return formatter.string(from: self)
     }
+    
+    /// Returns the current ISO week number for today's date.
+    /// Note: ISO week numbering can be 1...53 depending on the year.
+    static func currentWeekOfYear() -> Int {
+        let calendar = Calendar(identifier: .iso8601)
+        return calendar.component(.weekOfYear, from: Date())
+    }
 }

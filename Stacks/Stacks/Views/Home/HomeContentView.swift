@@ -32,6 +32,7 @@ class HomeContentView: UIView {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(WorkoutSummaryCell.self, forCellWithReuseIdentifier: WorkoutSummaryCell.workoutSummaryCollectionViewCellIdentifier)
+        collection.register(WeekOfYearFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: WeekOfYearFooterView.reuseIdentifier)
         collection.backgroundColor = UIColor(hex: "#1f1f33")
         return collection
     }()
@@ -75,7 +76,7 @@ class HomeContentView: UIView {
             collectionView.topAnchor.constraint(equalTo: weeklyStatsView.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 20)
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
     }
 }
