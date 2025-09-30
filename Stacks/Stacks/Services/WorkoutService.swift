@@ -7,6 +7,8 @@
 import Foundation
 
 protocol WorkoutService {
-    func fetchWorkouts(forWeekOf: Int)
+    func fetchWorkouts(forWeekOf: Int) -> [Workout]
+    //  Eventually you'll want to make the above function async
+    //    func fetchWorkouts(forWeekOf: Int) async throws -> [Workout]
     func fetchWorkoutDetails(id: UUID)
 }

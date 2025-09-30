@@ -7,7 +7,7 @@
 import Foundation
 
 class MockWorkoutService: WorkoutService {
-    func fetchWorkouts(forWeekOf: Int) {
+    func fetchWorkouts(forWeekOf: Int) -> [Workout] {
         let workout1 = Workout(title: "Morning CrossFit", type: .crossFit, date: .now, averageHR: 150, duration: 60, calories: 250)
         let workout2 = Workout(title: "Morning CrossFit", type: .crossFit, date: .now, averageHR: 124, duration: 60, calories: 350)
         let workout3 = Workout(title: "Morning Walk", type: .walk, date: .now, averageHR: 100, duration: 60, calories: 264)
@@ -15,7 +15,7 @@ class MockWorkoutService: WorkoutService {
         let workout5 = Workout(title: "Morning CrossFit", type: .crossFit, date: .now, averageHR: 143, duration: 75, calories: 478)
         let workout6 = Workout(title: "Morning Run", type: .run, date: .now, averageHR: 161, duration: 90, calories: 605)
         let workout7 = Workout(title: "Morning Weighted Walk", type: .weightVestWalk, date: .now, averageHR: 105, duration: 30, calories: 118)
-
+        return [workout1, workout2, workout3, workout4, workout5, workout6, workout7]
     }
     
     func fetchWorkoutDetails(id: UUID) {
