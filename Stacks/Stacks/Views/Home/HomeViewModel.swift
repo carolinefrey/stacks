@@ -19,7 +19,16 @@ struct HomeViewModel {
     }
     
     func fetchWeeklyStats() -> WeeklyStats {
-        // dummy data
-        return WeeklyStats(workouts: 6, totalDuration: 8, totalCalories: 3021)
+        var durationMinutes: Double = 0.0
+        var totalCals: Int = 0
+        
+        for workout in workouts {
+            durationMinutes += workout.duration
+            totalCals += workout.calories
+        }
+        
+        let durationString = convertMinutesToHoursAndMinutes(durationMinutes)
+        
+        return WeeklyStats(workouts: workouts.count, totalDuration: durationString, totalCalories: totalCals)
     }
 }

@@ -7,6 +7,6 @@
 
 struct WeeklyStats {
     let workouts: Int
-    let totalDuration: Double
+    let totalDuration: String
     let totalCalories: Int
 }
