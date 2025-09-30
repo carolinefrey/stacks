@@ -27,7 +27,7 @@ struct HomeViewModel {
             totalCals += workout.calories
         }
         
-        let durationString = convertMinutesToHoursAndMinutes(durationMinutes)
+        let durationString = formatDurationMetric(durationMinutes)
         
         return WeeklyStats(workouts: workouts.count, totalDuration: durationString, totalCalories: totalCals)
     }

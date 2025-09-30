@@ -84,7 +84,7 @@ class WorkoutSummaryCell: UICollectionViewCell {
         title.text = workout.title
         icon.image = UIImage(systemName: workout.type.icon)
         
-        firstStat.metric.text = convertMinutesToHoursAndMinutes(workout.duration)
+        firstStat.metric.text = formatDurationMetric(workout.duration)
         firstStat.statLabel.text = "time"
             
         secondStat.metric.text = String(workout.calories)
