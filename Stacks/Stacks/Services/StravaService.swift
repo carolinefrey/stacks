@@ -32,7 +32,7 @@ func fetchActivities(completion: @escaping ([Workout]?, Error?) -> Void) {
 
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = "GET"
-    urlRequest.setValue("Bearer 3dcf70eed113ec43f6d523015e8929651dfac49c", forHTTPHeaderField: "Authorization")
+    urlRequest.setValue("Bearer \(Secrets.stravaAccessToken)", forHTTPHeaderField: "Authorization")
 
     URLSession.shared.dataTask(with: urlRequest) { data, response, error in
         guard let data, error == nil else { return }
@@ -44,16 +44,12 @@ func fetchActivities(completion: @escaping ([Workout]?, Error?) -> Void) {
             
             let results = try decoder.decode([StravaActivity].self, from: data)
             
-            for item in results {
-                print(item)
-            }
-            
             let workouts = results.map { result in
                 Workout(
                     title: result.name ?? "Untitled Workout",
                     type: WorkoutType(stravaType: result.type ?? "Workout"),
                     date: result.startDate ?? Date(),
-                    duration: result.movingTime ?? 0
+                    duration: formatDurationMetric(result.movingTime ?? 0)
                 )
             }
 
