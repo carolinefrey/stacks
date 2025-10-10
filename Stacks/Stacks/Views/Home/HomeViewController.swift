@@ -13,6 +13,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     private var contentView: HomeContentView!
     private let viewModel: HomeViewModel
     
+    var workoutsResults: [Workout] = []
+    
     // MARK: Initializers
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -39,7 +41,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        contentView.weeklyStatsView.configureWeeklyStatsView(with: viewModel.fetchWeeklyStats())
+//        contentView.weeklyStatsView.configureWeeklyStatsView(with: viewModel.fetchWeeklyStats())
+        
+        fetchActivities() { activityResults, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            DispatchQueue.main.async {
+                if let activityResults = activityResults, activityResults.count > 0 {
+                    self.workoutsResults = activityResults
+                    self.contentView.collectionView.reloadData()
+                } else {
+                    print("No results found")
+                }
+            }
+        }
     }
     
     // MARK: Functions
@@ -57,7 +73,7 @@ extension HomeViewController: UICollectionViewDataSource {
         
         //TODO: This should return MAX 7, but could be 1-7 depending on what day it is (ex: viewing on a Tuesday, should only be Monday & Tuesday's workout)
         
-        return viewModel.workouts.count
+        return workoutsResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,7 +81,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue WorkoutSummaryCell")
             }
             
-        let workout = viewModel.workouts[indexPath.item]
+        let workout = workoutsResults[indexPath.item]
         cell.configure(with: workout)
         return cell
     }
