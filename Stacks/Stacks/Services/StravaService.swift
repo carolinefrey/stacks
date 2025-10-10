@@ -26,7 +26,9 @@ struct TokenResponse: Codable {
 }
 
 func fetchActivities(completion: @escaping ([Workout]?, Error?) -> Void) {
-    guard let url = URL(string: "https://www.strava.com/api/v3/athlete/activities") else {
+    let afterTimestamp = Date().startOfCurrentWeekEpoch()
+    
+    guard let url = URL(string: "https://www.strava.com/api/v3/athlete/activities?&after=\(afterTimestamp)") else {
         return
     }
 

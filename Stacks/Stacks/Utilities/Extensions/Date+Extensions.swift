@@ -51,3 +51,22 @@ extension Date {
         return stravaDayFormatter.date(from: String(dayComponent))
     }
 }
+
+extension Date {
+    func startOfCurrentWeekEpoch() -> Int {
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // Find Monday of this week
+        let weekday = calendar.component(.weekday, from: now)
+        // In the Gregorian calendar, Sunday = 1, Monday = 2, ..., Saturday = 7
+        let daysSinceMonday = (weekday + 5) % 7 // Converts Sunday (1) → 6, Monday (2) → 0, etc.
+        let monday = calendar.date(byAdding: .day, value: -daysSinceMonday, to: now)!
+        
+        // Get the start of that day (midnight)
+        let startOfMonday = calendar.startOfDay(for: monday)
+        
+        // Convert to epoch timestamp (seconds since 1970)
+        return Int(startOfMonday.timeIntervalSince1970)
+    }
+}
