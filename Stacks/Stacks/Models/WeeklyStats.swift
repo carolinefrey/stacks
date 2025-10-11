@@ -8,5 +8,5 @@
 struct WeeklyStats {
     let workouts: Int
     let totalDuration: String
-    let totalCalories: Int
+//    let totalCalories: Int
 }

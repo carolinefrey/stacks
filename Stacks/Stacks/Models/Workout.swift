@@ -12,5 +12,6 @@ struct Workout {
     let title: String
     let type: WorkoutType
     let date: Date
-    let duration: String
+    let duration: Int
+    let formattedDuration: String
 }

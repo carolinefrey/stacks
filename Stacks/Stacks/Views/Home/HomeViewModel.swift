@@ -9,34 +9,14 @@ import Foundation
 import UIKit
 
 final class HomeViewModel {
-//    private let workoutService: WorkoutService
-//
-//    init(workoutService: WorkoutService = StravaWorkoutService(refreshToken: StravaTokenStore.refreshToken())) {
-//        self.workoutService = workoutService
-//    }
-
-//    private(set) var workouts: [Workout] = []
-
-//    func loadThisWeek() async {
-//        do {
-//            let week = Date.currentWeekOfYear()
-//            self.workouts = try await workoutService.fetchWorkouts(forWeekOf: week)
-//        } catch {
-//            // Handle error (log, set empty array, show message)
-//            print("Errorrrr: workouts array is empty")
-//            self.workouts = []
-//        }
-//    }
-
-//    func fetchWeeklyStats() -> WeeklyStats {
-//        var durationMinutes: Double = 0
-//        var totalCals: Int = 0
-//        for workout in workouts {
-//            durationMinutes += workout.duration
-//            totalCals += workout.calories
-//        }
-//        let durationString = formatDurationMetric(durationMinutes)
-//        return WeeklyStats(workouts: workouts.count, totalDuration: durationString, totalCalories: totalCals)
-//    }
+    func calculateWeeklyStats(for workouts:[Workout]) -> WeeklyStats {
+        var totalDuration: Int = 0
+        
+        for workout in workouts {
+            totalDuration += workout.duration
+        }
+        let durationString = formatDurationMetric(totalDuration)
+        return WeeklyStats(workouts: workouts.count, totalDuration: durationString)
+    }
 }
 

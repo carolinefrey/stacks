@@ -41,15 +41,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
-//        contentView.weeklyStatsView.configureWeeklyStatsView(with: viewModel.fetchWeeklyStats())
-        
-        fetchActivities() { activityResults, error in
+
+        fetchActivitiesWithAutoRefresh(
+            storedRefreshToken: Secrets.stravaRefreshToken,
+            storedAccessToken: Secrets.stravaAccessToken,
+            storedExpiresAt: Secrets.stravaExpiresAt
+        ) { [weak self] activityResults, error in
+            guard let self = self else { return }
+
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
+
             DispatchQueue.main.async {
-                if let activityResults = activityResults, activityResults.count > 0 {
+                if let activityResults = activityResults, !activityResults.isEmpty {
                     self.workoutsResults = activityResults
+                    self.contentView.weeklyStatsView.configureWeeklyStatsView(
+                        with: self.viewModel.calculateWeeklyStats(for: activityResults)
+                    )
                     self.contentView.collectionView.reloadData()
                 } else {
                     print("No results found")

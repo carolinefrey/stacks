@@ -84,15 +84,13 @@ class WorkoutSummaryCell: UICollectionViewCell {
         title.text = workout.title
         icon.image = UIImage(systemName: workout.type.icon)
         
-//        firstStat.metric.text = formatDurationMetric(workout.duration)
-        firstStat.metric.text = String(workout.duration)
-        
+        firstStat.metric.text = workout.formattedDuration
         firstStat.statLabel.text = "time"
             
-//        secondStat.metric.text = String(workout.calories)
+        secondStat.metric.text = "n/a"
         secondStat.statLabel.text = "calories"
         
-//        thirdStat.metric.text = String(workout.averageHR)
+        thirdStat.metric.text = "n/a"
         thirdStat.statLabel.text = "avg hr"
     }
     

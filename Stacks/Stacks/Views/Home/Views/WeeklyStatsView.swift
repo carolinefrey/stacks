@@ -57,10 +57,10 @@ class WeeklyStatsView: UIView {
         workoutsLabel.metric.text = String(stats.workouts)
         workoutsLabel.statLabel.text = "workouts"
         
-        durationLabel.metric.text = String(stats.totalDuration)
+        durationLabel.metric.text = stats.totalDuration
         durationLabel.statLabel.text = "time"
 
-        caloriesLabel.metric.text = String(stats.totalCalories)
+        caloriesLabel.metric.text = "N/A"
         caloriesLabel.statLabel.text = "calories"
         
         metricsStackView.addArrangedSubview(workoutsLabel)
