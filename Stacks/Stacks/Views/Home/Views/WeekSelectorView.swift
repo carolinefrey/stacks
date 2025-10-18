@@ -14,7 +14,7 @@ class WeekSelectorView: UIView {
     private let backButton: UIButton = {
         let backButton = UIButton(type: .system)
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .regular)
-        let image = UIImage(systemName: "arrowshape.backward", withConfiguration: config)
+        let image = UIImage(systemName: "arrow.left", withConfiguration: config)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.setImage(image, for: .normal)
         backButton.tintColor = .white
@@ -24,7 +24,7 @@ class WeekSelectorView: UIView {
     private let forwardButton: UIButton = {
         let forwardButton = UIButton(type: .system)
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .regular)
-        let image = UIImage(systemName: "arrowshape.forward", withConfiguration: config)
+        let image = UIImage(systemName: "arrow.right", withConfiguration: config)
         forwardButton.translatesAutoresizingMaskIntoConstraints = false
         forwardButton.setImage(image, for: .normal)
         forwardButton.tintColor = .white
@@ -53,8 +53,9 @@ class WeekSelectorView: UIView {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.distribution = .equalSpacing
+        stack.distribution = .fill
         stack.alignment = .center
+        stack.spacing = 5
         return stack
     }()
     

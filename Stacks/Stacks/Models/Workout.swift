@@ -8,10 +8,20 @@
 import Foundation
 
 struct Workout {
-    let id: UUID = UUID()
+    let id: Int
     let title: String
     let type: WorkoutType
     let date: Date
     let duration: Int
     let formattedDuration: String
+    let averageHeartrate: Double
+    let distance: Double?
+    let formattedDistance: String?
+}
+
+struct WorkoutDetails: Codable {
+    let name: String
+    let calories: Double
+    let averageHeartrate: Double
+    let maxHeartrate: Double
 }

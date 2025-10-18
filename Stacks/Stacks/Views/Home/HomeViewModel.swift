@@ -11,12 +11,15 @@ import UIKit
 final class HomeViewModel {
     func calculateWeeklyStats(for workouts:[Workout]) -> WeeklyStats {
         var totalDuration: Int = 0
+        var totalDistance: Double = 0
         
         for workout in workouts {
             totalDuration += workout.duration
+            totalDistance += workout.distance ?? 0
         }
+        
         let durationString = formatDurationMetric(totalDuration)
-        return WeeklyStats(workouts: workouts.count, totalDuration: durationString)
+        let distanceString = formatDistanceMetric(fromMeters: totalDistance)
+        return WeeklyStats(workouts: workouts.count, totalDuration: durationString, totalDistance: distanceString)
     }
 }
-

@@ -49,7 +49,6 @@ class HomeContentView: UIView {
     }
     
     // MARK: - Functions
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {

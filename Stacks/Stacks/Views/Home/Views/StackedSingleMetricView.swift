@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SingleStatView: UIView {
+class StackedSingleMetricView: UIView {
     
     // MARK: Properties
     

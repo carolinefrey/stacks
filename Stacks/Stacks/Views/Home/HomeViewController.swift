@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: Properties
     private var contentView: HomeContentView!
@@ -68,7 +68,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     
     // MARK: Functions
-    
     private func configureCollectionView() {
         contentView.collectionView.dataSource = self
         contentView.collectionView.delegate = self
@@ -76,12 +75,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        //TODO: This should return MAX 7, but could be 1-7 depending on what day it is (ex: viewing on a Tuesday, should only be Monday & Tuesday's workout)
-        
         return workoutsResults.count
     }
     
@@ -105,8 +100,25 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
+extension HomeViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Safely get the selected workout
+        guard indexPath.item < workoutsResults.count else { return }
+        let workout = workoutsResults[indexPath.item]
+
+        // Initialize and push the detail view
+        // Assumes WorkoutDetailView is a UIViewController that can be initialized with a Workout
+        let detailVC = WorkoutDetailsViewController(workout: workout)
+        navigationController?.pushViewController(detailVC, animated: true)
+
+        // Deselect the tapped cell for visual feedback
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 40)
     }
 }
+

@@ -37,20 +37,20 @@ class WorkoutSummaryCell: UICollectionViewCell {
         return imageView
     }()
     
-    let firstStat: SingleStatView = {
-        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+    let firstStat: StackedSingleMetricView = {
+        let stat = StackedSingleMetricView(metricFontSize: 18, labelFontSize: 16)
         stat.translatesAutoresizingMaskIntoConstraints = false
         return stat
     }()
     
-    let secondStat: SingleStatView = {
-        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+    let secondStat: StackedSingleMetricView = {
+        let stat = StackedSingleMetricView(metricFontSize: 18, labelFontSize: 16)
         stat.translatesAutoresizingMaskIntoConstraints = false
         return stat
     }()
     
-    let thirdStat: SingleStatView = {
-        let stat = SingleStatView(metricFontSize: 18, labelFontSize: 16)
+    let thirdStat: StackedSingleMetricView = {
+        let stat = StackedSingleMetricView(metricFontSize: 18, labelFontSize: 16)
         stat.translatesAutoresizingMaskIntoConstraints = false
         return stat
     }()
@@ -86,11 +86,11 @@ class WorkoutSummaryCell: UICollectionViewCell {
         
         firstStat.metric.text = workout.formattedDuration
         firstStat.statLabel.text = "time"
-            
-        secondStat.metric.text = "n/a"
-        secondStat.statLabel.text = "calories"
         
-        thirdStat.metric.text = "n/a"
+        secondStat.metric.text = workout.formattedDistance
+        secondStat.statLabel.text = "miles"
+        
+        thirdStat.metric.text = String(format: "%.0f", workout.averageHeartrate)
         thirdStat.statLabel.text = "avg hr"
     }
     
@@ -108,22 +108,22 @@ class WorkoutSummaryCell: UICollectionViewCell {
         addSubview(statsRow)
         
         NSLayoutConstraint.activate([
-            dayOfWeek.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            dayOfWeek.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            dayOfWeek.topAnchor.constraint(equalTo: topAnchor, constant: 14),
+            dayOfWeek.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
             dayOfWeek.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             title.topAnchor.constraint(equalTo: dayOfWeek.bottomAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            icon.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            icon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            icon.topAnchor.constraint(equalTo: topAnchor, constant: 14),
+            icon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
             icon.heightAnchor.constraint(equalToConstant: 30),
             icon.widthAnchor.constraint(equalToConstant: 30),
             
             statsRow.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
-            statsRow.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            statsRow.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            statsRow.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
+            statsRow.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
         ])
     }
     
@@ -131,11 +131,35 @@ class WorkoutSummaryCell: UICollectionViewCell {
         backgroundColor = UIColor.white.withAlphaComponent(0.10)
         
         // Corner radius
-        layer.cornerRadius = 10
+        layer.cornerRadius = 20
         layer.masksToBounds = true
         
         // Border
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.withAlphaComponent(0.08).cgColor
+        
+        addInnerHighlight()
+    }
+    
+    private let highlightLayer = CAGradientLayer()
+
+    private func addInnerHighlight() {
+        highlightLayer.removeFromSuperlayer()
+        highlightLayer.colors = [
+            UIColor.white.withAlphaComponent(0.05).cgColor,
+            UIColor.white.withAlphaComponent(0.00).cgColor
+        ]
+        highlightLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        highlightLayer.endPoint = CGPoint(x: 0.5, y: 0.6)
+        highlightLayer.frame = contentView.bounds
+        highlightLayer.cornerRadius = contentView.layer.cornerRadius
+        contentView.layer.insertSublayer(highlightLayer, at: 0)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 20).cgPath
+        highlightLayer.frame = contentView.bounds
+        highlightLayer.cornerRadius = contentView.layer.cornerRadius
     }
 }

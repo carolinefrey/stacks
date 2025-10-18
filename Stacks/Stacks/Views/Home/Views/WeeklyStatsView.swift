@@ -11,20 +11,20 @@ class WeeklyStatsView: UIView {
     
     // MARK: Properties
     
-    let workoutsLabel: SingleStatView = {
-        let workouts = SingleStatView(metricFontSize: 28, labelFontSize: 18)
+    let workoutsLabel: StackedSingleMetricView = {
+        let workouts = StackedSingleMetricView(metricFontSize: 28, labelFontSize: 18)
         workouts.translatesAutoresizingMaskIntoConstraints = false
         return workouts
     }()
     
-    let durationLabel: SingleStatView = {
-        let duration = SingleStatView(metricFontSize: 28, labelFontSize: 18)
+    let durationLabel: StackedSingleMetricView = {
+        let duration = StackedSingleMetricView(metricFontSize: 28, labelFontSize: 18)
         duration.translatesAutoresizingMaskIntoConstraints = false
         return duration
     }()
     
-    let caloriesLabel: SingleStatView = {
-        let calories = SingleStatView(metricFontSize: 28, labelFontSize: 18)
+    let caloriesLabel: StackedSingleMetricView = {
+        let calories = StackedSingleMetricView(metricFontSize: 28, labelFontSize: 18)
         calories.translatesAutoresizingMaskIntoConstraints = false
         return calories
     }()
@@ -60,8 +60,8 @@ class WeeklyStatsView: UIView {
         durationLabel.metric.text = stats.totalDuration
         durationLabel.statLabel.text = "time"
 
-        caloriesLabel.metric.text = "N/A"
-        caloriesLabel.statLabel.text = "calories"
+        caloriesLabel.metric.text = stats.totalDistance
+        caloriesLabel.statLabel.text = "miles"
         
         metricsStackView.addArrangedSubview(workoutsLabel)
         metricsStackView.addArrangedSubview(durationLabel)
@@ -85,7 +85,7 @@ class WeeklyStatsView: UIView {
         backgroundColor = UIColor.white.withAlphaComponent(0.10)
         
         // Corner radius
-        layer.cornerRadius = 10
+        layer.cornerRadius = 20
         layer.masksToBounds = true
         
         // Border

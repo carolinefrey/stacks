@@ -24,3 +24,9 @@ func formatDurationMetric(_ seconds: Int) -> String {
         return String(format: "%d:%02d", hours, minutesPart)
     }
 }
+
+func formatDistanceMetric(fromMeters meters: Double) -> String {
+    if meters == 0 { return "0.0" }
+    let miles = meters / 1609.344
+    return String(format: "%0.1f", miles)
+}
